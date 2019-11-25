@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/appbg">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/iconclose"
+            android:id="@+id/closeAuthFragment"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="10dp"/>
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/internshalalogo"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:padding="10dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp"
+            android:background="@drawable/dialogbg"
+            android:layout_centerInParent="true"
+            android:id="@+id/signinLay"
+            android:visibility="invisible">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="24dp"
+                android:layout_weight="1"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/signinUseremail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="0dp"
+                    android:hint="Username"
+                    android:inputType="textEmailAddress"
+                    android:textColor="#1091c3"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="24dp"
+                android:layout_weight="1"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/signinPswd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="0dp"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:textColor="#1091c3"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/signinSubmit"
+                android:text="Sign In"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="35dp"
+                android:background="#1091c3"
+                android:textColor="#ffffff"
+                android:layout_gravity="end"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#1091c3"
+                android:text="New to App? Sigup from Here"
+                android:textSize="16sp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/changeToSignUp"
+                android:layout_marginStart="24dp"/>
+
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp"
+            android:background="@drawable/dialogbg"
+            android:layout_centerInParent="true"
+            android:id="@+id/signupLay"
+            android:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="24dp"
+                android:layout_weight="1"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/signupUseremail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="0dp"
+                    android:hint="Email Id"
+                    android:inputType="textEmailAddress"
+                    android:textColor="#1091c3"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_weight="1"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/signupFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="0dp"
+                    android:hint="First Name"
+                    android:inputType="text"
+                    android:textColor="#1091c3"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_weight="1"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/signupLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="0dp"
+                    android:hint="Last Name"
+                    android:inputType="text"
+                    android:textColor="#1091c3"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_weight="1"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/signupPswd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="0dp"
+                    android:hint="Password"
+                    android:inputType="text"
+                    android:textColor="#1091c3"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/signupSubmit"
+                android:text="Sign Up"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="35dp"
+                android:background="#1091c3"
+                android:textColor="#ffffff"
+                android:layout_gravity="end"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#1091c3"
+                android:text="Already a Member? Sign In Here"
+                android:textSize="16sp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/changeToSignIn"
+                android:layout_marginStart="24dp"/>
+
+
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
