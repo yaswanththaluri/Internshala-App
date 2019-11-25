@@ -14,6 +14,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     //Workshop details
     String workshopDetails = null;
 
+    private ImageView userAuth;
+    private RelativeLayout toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +47,11 @@ public class MainActivity extends AppCompatActivity {
         //feed the database
         LoadtheWorkshops();
 
+        userAuth = findViewById(R.id.authUser);
+
 
         fragTitle = findViewById(R.id.title);
+        toolbar = findViewById(R.id.titleBar);
 
         fragTitle.setPaintFlags(fragTitle.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
@@ -53,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = new TrainingFragment();
         loadFragent(fragment);
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
+        final BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -78,6 +87,19 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
+        userAuth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toolbar.setVisibility(View.GONE);
+                bottomNavigationView.setVisibility(View.GONE);
+                Fragment fragment = new AuthFragment();
+                loadFragent(fragment);
+            }
+        });
+
+
     }
 
     public void loadFragent(Fragment fragment)

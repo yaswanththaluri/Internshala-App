@@ -13,12 +13,12 @@
         android:layout_weight="1">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/iconclose"
             android:id="@+id/closeAuthFragment"
             android:layout_alignParentEnd="true"
-            android:layout_margin="10dp"/>
+            android:layout_margin="20dp"/>
 
         <ImageView
             android:layout_width="250dp"
@@ -43,7 +43,7 @@
             android:background="@drawable/dialogbg"
             android:layout_centerInParent="true"
             android:id="@+id/signinLay"
-            android:visibility="invisible">
+            android:visibility="visible">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -126,7 +126,7 @@
             android:background="@drawable/dialogbg"
             android:layout_centerInParent="true"
             android:id="@+id/signupLay"
-            android:visibility="visible">
+            android:visibility="invisible">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
