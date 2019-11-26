@@ -46,12 +46,12 @@ public class UserProvider extends ContentProvider {
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
         mSqLiteDatabase = mUserDbHelper.getWritableDatabase();
+        Log.i("info--", "executing0");
         long id = mSqLiteDatabase.insert(UserContract.UserEntry.TABLE_NAME, null, values);
         if (id == -1) {
-//            Log.d(TAG,"failed to insert the data for" + uri);
-            System.out.println("failed to insert");
+           Log.i("fail--","failed to insert the data for");
         } else {
-            Log.d(TAG, "HERE IS YOUR ID-" + id);
+            Log.i("id--", "HERE IS YOUR ID-" + id);
         }
         getContext().getContentResolver().notifyChange(uri, null);
         return ContentUris.withAppendedId(uri, id);

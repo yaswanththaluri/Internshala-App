@@ -26,7 +26,7 @@
 
         <provider
             android:authorities="androidapp.capstone.com.internshalaapp"
-            android:name="UserProvider"
+            android:name=".UserProvider"
             android:exported="true"/>
 
     </application>

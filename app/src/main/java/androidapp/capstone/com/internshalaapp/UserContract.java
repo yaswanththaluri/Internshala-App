@@ -5,7 +5,7 @@ import android.provider.BaseColumns;
 
 public class UserContract
 {
-    public static final String CONTENT_AUTHORITY = "com.ibrickedlabs.internshala.UserData";
+    public static final String CONTENT_AUTHORITY = "androidapp.capstone.com.internshalaapp";
     //Adding the segment to the ContentAuthority
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
     //Table name
@@ -38,7 +38,6 @@ public class UserContract
         public static final String WORKSHOP_Machine_Learning = "MachineLearning";
         public static final String WORKSHOP_SAP_Bootcamp = "SAPBootcamp";
         public static final String WORKSHOP_Web_Development = "WebDevelopment";
-
 
     }
 

@@ -13,6 +13,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     String workshopNames[] = {"Android", "Artificial Intelligence", "BigData Bootcamp", "BlockChain Technology", "Cyber Security", "CloudComputing", "Datascience Bootcamp", "Iot", "Machine Learning", "SAP Bootcamp", "Web Development"};
     //Workshop details
     String workshopDetails = null;
-
+    String showNav = "";
     private ImageView userAuth;
     private RelativeLayout toolbar;
 
@@ -48,6 +49,18 @@ public class MainActivity extends AppCompatActivity {
         LoadtheWorkshops();
 
         userAuth = findViewById(R.id.authUser);
+
+        try
+        {
+            Bundle bundle = getIntent().getExtras();
+            showNav = bundle.getString("showNavs");
+        }
+        catch (Exception e)
+        {
+            Log.i("error",e.getMessage());
+        }
+
+
 
 
         fragTitle = findViewById(R.id.title);
@@ -88,13 +101,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        if (showNav.equals("true"))
+        {
+            bottomNavigationView.setVisibility(View.VISIBLE);
+        }
+
+
 
         userAuth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 toolbar.setVisibility(View.GONE);
-                bottomNavigationView.setVisibility(View.GONE);
-                Fragment fragment = new AuthFragment();
+                Fragment fragment = new AuthFragment(MainActivity.this);
                 loadFragent(fragment);
             }
         });

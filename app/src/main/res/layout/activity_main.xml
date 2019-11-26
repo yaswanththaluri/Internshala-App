@@ -51,10 +51,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bottomnavbg"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:padding="10dp"
         android:layout_alignParentBottom="true"
         android:id="@+id/bottomNav"
         app:menu="@menu/bottom_menu"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Login to Register for course"
+        android:textSize="18sp"
+        android:layout_marginBottom="25dp"
+        />
 
 </RelativeLayout>
