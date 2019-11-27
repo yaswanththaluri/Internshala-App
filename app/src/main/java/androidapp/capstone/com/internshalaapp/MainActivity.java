@@ -1,11 +1,13 @@
 package androidapp.capstone.com.internshalaapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Paint;
@@ -123,6 +125,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        signOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final AlertDialog.Builder alert = new AlertDialog.Builder(
+                        MainActivity.this);
+                alert.setTitle("Alert");
+                alert.setMessage("Are you sure you want to exit the app?");
+                alert.setPositiveButton("Exit",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                clearCurrUser();
+                                finishAffinity();
+                            }
+                        });
+                alert.setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+                alert.show();
+
+            }
+        });
+
 
     }
 
@@ -182,6 +213,21 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean("FIRSTENTRY", false);
             editor.commit();
+        }
+    }
+
+
+    private void clearCurrUser()
+    {
+        UserDBHelper mUserDbHelper = new UserDBHelper(MainActivity.this);
+        SQLiteDatabase mSqLiteDatabase = mUserDbHelper.getReadableDatabase();
+        try{
+            mSqLiteDatabase.execSQL("UPDATE "+UserContract.UserEntry.CURR_USER_TABLE+" SET curr_user="+"'"+"none"+"' WHERE curr_id = '01'");
+            Toast.makeText(MainActivity.this, "Session Cleared", Toast.LENGTH_SHORT).show();
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(MainActivity.this, "Problem in Clearing session", Toast.LENGTH_SHORT).show();
         }
     }
 }

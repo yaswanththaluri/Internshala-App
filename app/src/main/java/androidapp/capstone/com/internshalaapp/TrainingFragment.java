@@ -2,7 +2,9 @@ package androidapp.capstone.com.internshalaapp;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,6 +39,8 @@ public class TrainingFragment extends Fragment implements LoaderManager.LoaderCa
             "Android", "Artificial Intelligence", "BigData Bootcamp", "BlockChain Technology", "Cyber Security", "CloudComputing", "Datascience Bootcamp", "Iot", "Machine Learning", "SAP Bootcamp", "Web Development"
     };
 
+    private String email;
+
 
     @Override
     public void onAttach(Context context) {
@@ -55,6 +60,26 @@ public class TrainingFragment extends Fragment implements LoaderManager.LoaderCa
         mWorkshopListView = (ListView) view.findViewById(R.id.training_list);
         mAdapter = new WorkshopAdapter(context, null);
         mWorkshopListView.setAdapter(mAdapter);
+
+
+
+        mWorkshopListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (email.equals("none"))
+                {
+                    Toast.makeText(getContext(), "You should login before viewing the details", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+
+                    Intent intent = new Intent(getContext(), CourseDetailed.class);
+                    intent.putExtra("Position", ""+l);
+                    intent.putExtra("WrkshopSelected", workshopNames[i]);
+                    startActivity(intent);
+                }
+            }
+        });
 
         //Kicking off the loader
         getLoaderManager().initLoader(WORKSHOP_LOADER, null, this);
@@ -92,5 +117,31 @@ public class TrainingFragment extends Fragment implements LoaderManager.LoaderCa
     public void onLoaderReset(Loader<Cursor> loader) {
         //resetting the recent cursor
         mAdapter.swapCursor(null);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        email = getEmail();
+    }
+
+
+    public String getEmail()
+    {
+        String email = "";
+        UserDBHelper mUserDbHelper = new UserDBHelper(getContext());
+        SQLiteDatabase mSqLiteDatabase = mUserDbHelper.getReadableDatabase();
+        Cursor cursor = mSqLiteDatabase.query(UserContract.UserEntry.CURR_USER_TABLE,
+                new String[]{UserContract.UserEntry.CURRENT_USER_ID, UserContract.UserEntry.CURRENT_USER_EMAIL},
+                UserContract.UserEntry.CURRENT_USER_ID + "=?",
+                new String[]{"01"}, null, null, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                int emailInd = cursor.getColumnIndex(UserContract.UserEntry.CURRENT_USER_EMAIL);
+                email = cursor.getString(emailInd);
+                Toast.makeText(getContext(), ""+email, Toast.LENGTH_SHORT).show();
+            }
+        }
+        return email;
     }
 }

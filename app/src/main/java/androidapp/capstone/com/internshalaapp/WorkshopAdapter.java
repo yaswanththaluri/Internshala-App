@@ -23,6 +23,7 @@ public class WorkshopAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
+
         TextView workshopNameView = (TextView) view.findViewById(R.id.trainingName);
 
         int workshopNameColIndex = cursor.getColumnIndex(WorkshopContract.WorkshopEntry.WORKSHOP_NAME);
