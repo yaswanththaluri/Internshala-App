@@ -2,6 +2,7 @@ package androidapp.capstone.com.internshalaapp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 public class AuthFragment extends Fragment {
@@ -31,18 +33,16 @@ public class AuthFragment extends Fragment {
     private Context actContext;
     private ImageView closeFrag;
 
+    public AuthFragment(Context context) {
+        this.actContext = context;
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         mUserDbHelper = new UserDBHelper(getContext());
 
     }
-
-    public AuthFragment(Context context)
-    {
-        this.actContext = context;
-    }
-
 
     @Nullable
     @Override
@@ -95,10 +95,9 @@ public class AuthFragment extends Fragment {
             public void onClick(View view) {
                 String mail = emailIn.getText().toString();
                 String pswd = pswdIn.getText().toString();
-                if (validateUser(mail, pswd))
-                {
+                if (validateUser(mail, pswd)) {
                     mSqLiteDatabase = mUserDbHelper.getWritableDatabase();
-                    mSqLiteDatabase.execSQL("UPDATE "+UserContract.UserEntry.CURR_USER_TABLE+" SET curr_user="+"'"+mail+"' WHERE curr_id = '01'");
+                    mSqLiteDatabase.execSQL("UPDATE " + UserContract.UserEntry.CURR_USER_TABLE + " SET curr_user=" + "'" + mail + "' WHERE curr_id = '01'");
                     Intent i = new Intent(getContext(), MainActivity.class);
                     i.putExtra("showNavs", "true");
                     startActivity(i);
@@ -132,16 +131,14 @@ public class AuthFragment extends Fragment {
     }
 
 
-    private boolean validateUser(String email, String pswd)
-    {
-        if (!email.equals("") && !pswd.equals(""))
-        {
+    private boolean validateUser(String email, String pswd) {
+        if (!email.equals("") && !pswd.equals("")) {
             mSqLiteDatabase = mUserDbHelper.getReadableDatabase();
             Cursor cursor = mSqLiteDatabase.query(UserContract.UserEntry.TABLE_NAME,
                     new String[]{UserContract.UserEntry.USER_EMAIL, UserContract.UserEntry.USER_PASSWORD},
                     UserContract.UserEntry.USER_EMAIL + "=?",
                     new String[]{email}, null, null, null);
-            if(cursor.getCount()<=0){
+            if (cursor.getCount() <= 0) {
                 Toast.makeText(currView.getContext(), "Please enter registered email id", Toast.LENGTH_SHORT).show();
             }
             if (cursor != null) {
@@ -162,31 +159,43 @@ public class AuthFragment extends Fragment {
                 return false;
 
             }
-        }
-        else {
+        } else {
             Toast.makeText(currView.getContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
         }
         return false;
     }
 
-    private void createUser(String email, String pswd, String fName, String sName)
-    {
-        if (!email.equals("") && !pswd.equals("") && !fName.equals("") && !sName.equals(""))
-        {
+    private void createUser(String email, String pswd, String fName, String sName) {
+        if (!email.equals("") && !pswd.equals("") && !fName.equals("") && !sName.equals("")) {
             mSqLiteDatabase = mUserDbHelper.getWritableDatabase();
-            try
-            {
-                mSqLiteDatabase.execSQL("INSERT INTO "+UserContract.UserEntry.TABLE_NAME
-                        +" (email, password, firstName, lastName) values('"+email+"', '"+pswd+"', '"+fName+"', '"+sName+"');");
-                mSqLiteDatabase.execSQL("INSERT INTO "+UserContract.UserEntry.CURR_USER_TABLE+" (curr_user, curr_id) values('"+email+"', '01');");
-                Toast.makeText(currView.getContext(), "Account Created Successfully", Toast.LENGTH_SHORT).show();
-            }
-            catch (Exception e)
-            {
+            try {
+                mSqLiteDatabase.execSQL("INSERT INTO " + UserContract.UserEntry.TABLE_NAME
+                        + " (email, password, firstName, lastName) values('" + email + "', '" + pswd + "', '" + fName + "', '" + sName + "');");
+                mSqLiteDatabase.execSQL("INSERT INTO " + UserContract.UserEntry.CURR_USER_TABLE + " (curr_user, curr_id) values('" + email + "', '01');");
+
+                final AlertDialog.Builder alert = new AlertDialog.Builder(
+                        getContext());
+                alert.setTitle("Confirmation");
+                alert.setMessage("Account Created Successfully...!");
+                alert.setPositiveButton("Ok",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                emailUp.setText("");
+                                pswdUp.setText("");
+                                name1Up.setText("");
+                                name2up.setText("");
+                                dialog.dismiss();
+                            }
+                        });
+                alert.show();
+
+            } catch (Exception e) {
                 Toast.makeText(currView.getContext(), "Problem in Creating Account", Toast.LENGTH_SHORT).show();
             }
-        }
-        else {
+        } else {
             Toast.makeText(currView.getContext(), "Please fill all the details", Toast.LENGTH_SHORT).show();
         }
     }

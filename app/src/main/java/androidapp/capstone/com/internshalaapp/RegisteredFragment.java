@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class RegisteredFragment extends Fragment {
 
     private ListView listView;
     private ArrayList<String> appliedworksops;
+    private ImageView nores;
 
     @Nullable
     @Override
@@ -31,15 +33,16 @@ public class RegisteredFragment extends Fragment {
 
         listView = view.findViewById(R.id.registered_list);
         appliedworksops = new ArrayList<>();
+        nores = view.findViewById(R.id.noresults);
 
         setUpData();
 
         if (appliedworksops.size() > 0) {
+            nores.setVisibility(View.INVISIBLE);
             ArrayAdapter arrayAdapter = new ArrayAdapter(getContext(), R.layout.registered_item, R.id.courseRegistered, appliedworksops);
             listView.setAdapter(arrayAdapter);
         } else {
-            //Empty
-
+            nores.setVisibility(View.VISIBLE);
         }
 
 
@@ -112,7 +115,6 @@ public class RegisteredFragment extends Fragment {
                 if (cursor.moveToFirst()) {
                     int emailInd = cursor.getColumnIndex(UserContract.UserEntry.CURRENT_USER_EMAIL);
                     email = cursor.getString(emailInd);
-                    Toast.makeText(getContext(), ""+email, Toast.LENGTH_SHORT).show();
                 }
             }
             return email;

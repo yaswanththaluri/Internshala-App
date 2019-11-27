@@ -1,72 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-app:cardCornerRadius="15dp"
-android:layout_margin="10dp"
-android:padding="10dp"
-android:background="@drawable/dialogbg"
-android:layout_height="wrap_content">
-
-<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="15dp"
+    android:layout_margin="10dp"
+    android:padding="10dp"
+    android:background="@drawable/dialogbg"
+    android:layout_height="wrap_content">
 
-
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#1091c3"
-        android:text="Training name"
-        android:textSize="24sp"
-        android:id="@+id/courseRegistered"
-        android:padding="10dp"/>
-
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/icongreensuccess"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="10dp"/>
+        android:orientation="vertical">
 
 
-    <!--        <View-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="2dp"-->
-    <!--            android:background="#ebeff8"/>-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#1091c3"
+            android:text="Training name"
+            android:textSize="24sp"
+            android:id="@+id/courseRegistered"
+            android:padding="10dp"/>
 
-    <!--        <RelativeLayout-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:orientation="horizontal"-->
-    <!--            android:padding="10dp">-->
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/icongreensuccess"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"/>
 
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:textSize="18sp"-->
-    <!--                android:text="Starts from"-->
-    <!--                android:textColor="#009933"-->
-    <!--                android:textStyle="italic"-->
-    <!--                android:id="@+id/startsFromDate"/>-->
-
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:textSize="18sp"-->
-    <!--                android:text="Apply Now"-->
-    <!--                android:textColor="#2369ed"-->
-    <!--                android:layout_alignParentEnd="true"-->
-    <!--                android:textStyle="normal"-->
-    <!--                android:id="@+id/applyNow"/>-->
-
-
-    <!--        </RelativeLayout>-->
-
-</RelativeLayout>
+    </RelativeLayout>
 
 </LinearLayout>

@@ -1,5 +1,6 @@
 package androidapp.capstone.com.internshalaapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
@@ -7,6 +8,7 @@ import androidx.loader.content.Loader;
 
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -19,9 +21,9 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
-public class CourseDetailed extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>  {
+public class CourseDetailed extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private String position="", selectedWorkshop="";
+    private String position = "", selectedWorkshop = "";
     private Button apply;
     private TextView course;
 
@@ -31,14 +33,11 @@ public class CourseDetailed extends AppCompatActivity implements LoaderManager.L
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_detailed);
 
-        try
-        {
+        try {
             Bundle bundle = getIntent().getExtras();
             position = bundle.getString("Position");
             selectedWorkshop = bundle.getString("WrkshopSelected");
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             Log.i("Error on Bundle", e.getMessage());
         }
 
@@ -51,13 +50,9 @@ public class CourseDetailed extends AppCompatActivity implements LoaderManager.L
         apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (hasAlreadyApplied())
-                {
+                if (hasAlreadyApplied()) {
                     Toast.makeText(CourseDetailed.this, "This course is already registered by you !", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(CourseDetailed.this, "This course is not registered by you !", Toast.LENGTH_SHORT).show();
+                } else {
                     applyForTheWorkshop();
                 }
             }
@@ -100,12 +95,25 @@ public class CourseDetailed extends AppCompatActivity implements LoaderManager.L
         if (rowsUpdated == 0) {
             Toast.makeText(CourseDetailed.this, "Failed while Updation", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(CourseDetailed.this, "Registered for course successfully", Toast.LENGTH_LONG).show();
+            final AlertDialog.Builder alert = new AlertDialog.Builder(
+                    CourseDetailed.this);
+            alert.setTitle("Confirmation");
+            alert.setMessage("Course Registered Successfully...!");
+            alert.setPositiveButton("Ok",
+                    new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog,
+                                            int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alert.show();
         }
     }
 
 
-        private String getWorkShopName() {
+    private String getWorkShopName() {
         String str = null;
         switch (selectedWorkshop) {
             case "Android":
@@ -147,8 +155,7 @@ public class CourseDetailed extends AppCompatActivity implements LoaderManager.L
 
     }
 
-    public String getEmail()
-    {
+    public String getEmail() {
         String email = "";
         UserDBHelper mUserDbHelper = new UserDBHelper(CourseDetailed.this);
         SQLiteDatabase mSqLiteDatabase = mUserDbHelper.getReadableDatabase();
@@ -160,7 +167,6 @@ public class CourseDetailed extends AppCompatActivity implements LoaderManager.L
             if (cursor.moveToFirst()) {
                 int emailInd = cursor.getColumnIndex(UserContract.UserEntry.CURRENT_USER_EMAIL);
                 email = cursor.getString(emailInd);
-                Toast.makeText(CourseDetailed.this, ""+email, Toast.LENGTH_SHORT).show();
             }
         }
         return email;
@@ -181,7 +187,6 @@ public class CourseDetailed extends AppCompatActivity implements LoaderManager.L
         if (data.moveToFirst()) {
             int detailsColIndex = data.getColumnIndex(WorkshopContract.WorkshopEntry.WORKSHOP_DETAILS);
             String details = data.getString(detailsColIndex);
-//            detailsView.setText(details);
         }
 
 

@@ -76,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
 
         fragTitle.setTypeface(custom_font);
 
+        final TextView hint = findViewById(R.id.hintText);
+
+
         Fragment fragment = new TrainingFragment();
         loadFragent(fragment);
 
@@ -110,8 +113,11 @@ public class MainActivity extends AppCompatActivity {
             bottomNavigationView.setVisibility(View.VISIBLE);
             userAuth.setVisibility(View.INVISIBLE);
             signOut.setVisibility(View.VISIBLE);
-            TextView hint = findViewById(R.id.hintText);
             hint.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            hint.setVisibility(View.VISIBLE);
         }
 
 
@@ -120,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 toolbar.setVisibility(View.GONE);
+                hint.setVisibility(View.INVISIBLE);
                 Fragment fragment = new AuthFragment(MainActivity.this);
                 loadFragent(fragment);
             }

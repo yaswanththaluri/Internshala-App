@@ -139,7 +139,6 @@ public class TrainingFragment extends Fragment implements LoaderManager.LoaderCa
             if (cursor.moveToFirst()) {
                 int emailInd = cursor.getColumnIndex(UserContract.UserEntry.CURRENT_USER_EMAIL);
                 email = cursor.getString(emailInd);
-                Toast.makeText(getContext(), ""+email, Toast.LENGTH_SHORT).show();
             }
         }
         return email;
