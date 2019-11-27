@@ -28,7 +28,12 @@ b) Use of one activity and multiple fragments to fulfill the requirements is rec
 ```
 ### Screenshots
 <div>
-  <img src="" width="280" heighth="410"/>
+  <img src="https://github.com/yaswanththaluri/Internshala-App/blob/master/Screenshot_1.png" width="280" heighth="410"/>
+  <img src="https://github.com/yaswanththaluri/Internshala-App/blob/master/Screenshot_2.png" width="280" heighth="410"/>
+  <img src="https://github.com/yaswanththaluri/Internshala-App/blob/master/Screenshot_3.png" width="280" heighth="410"/>
+  <img src="https://github.com/yaswanththaluri/Internshala-App/blob/master/Screenshot_4.png" width="280" heighth="410"/>
+  <img src="https://github.com/yaswanththaluri/Internshala-App/blob/master/Screenshot_5.png" width="280" heighth="410"/>
+  <img src="https://github.com/yaswanththaluri/Internshala-App/blob/master/Screenshot_6.png" width="280" heighth="410"/>
   </div>
   
 ### Database Used
