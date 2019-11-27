@@ -32,7 +32,17 @@
             android:layout_gravity="end"
             android:layout_alignParentEnd="true"
             android:src="@drawable/iconuser"
-            android:id="@+id/authUser"/>
+            android:id="@+id/authUser"
+            android:visibility="visible"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/iconlogout"
+            android:id="@+id/signout"
+            android:visibility="invisible"/>
 
 
 
@@ -64,6 +74,7 @@
         android:layout_centerHorizontal="true"
         android:text="Login to Register for course"
         android:textSize="18sp"
+        android:id="@+id/hintText"
         android:layout_marginBottom="25dp"
         />
 

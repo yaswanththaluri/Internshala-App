@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     //Workshop details
     String workshopDetails = null;
     String showNav = "";
-    private ImageView userAuth;
+    private ImageView userAuth, signOut;
     private RelativeLayout toolbar;
 
 
@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
         fragTitle = findViewById(R.id.title);
         toolbar = findViewById(R.id.titleBar);
+
+        signOut = findViewById(R.id.signout);
 
         fragTitle.setPaintFlags(fragTitle.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
@@ -104,6 +106,10 @@ public class MainActivity extends AppCompatActivity {
         if (showNav.equals("true"))
         {
             bottomNavigationView.setVisibility(View.VISIBLE);
+            userAuth.setVisibility(View.INVISIBLE);
+            signOut.setVisibility(View.VISIBLE);
+            TextView hint = findViewById(R.id.hintText);
+            hint.setVisibility(View.INVISIBLE);
         }
 
 

@@ -10,25 +10,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning"><activity android:name=".MainActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".CourseDetailed"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <provider
             android:name=".WorkshopProvider"
             android:authorities="androidapp.capstone.com.internshalaapp"
             android:exported="false" />
-
         <provider
-            android:authorities="androidapp.capstone.com.internshalaapp"
             android:name=".UserProvider"
-            android:exported="true"/>
-
+            android:authorities="androidapp.capstone.com.internshalaapp"
+            android:exported="true" />
     </application>
 
 </manifest>

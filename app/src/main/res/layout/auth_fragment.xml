@@ -202,7 +202,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="0dp"
                     android:hint="Password"
-                    android:inputType="text"
+                    android:inputType="textPassword"
                     android:textColor="#1091c3"/>
 
             </com.google.android.material.textfield.TextInputLayout>

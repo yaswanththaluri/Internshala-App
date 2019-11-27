@@ -9,7 +9,7 @@
     android:background="@drawable/dialogbg"
     android:layout_height="wrap_content">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -24,49 +24,50 @@
             android:id="@+id/trainingName"
             android:padding="10dp"/>
 
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#ebeff8"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:text="Starts from"
-                android:textColor="#009933"
-                android:textStyle="italic"
-                android:id="@+id/startsFromDate"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/iconapply"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/applyCourse"/>
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:text="Apply Now"
-                android:textColor="#2369ed"
-                android:layout_alignParentEnd="true"
-                android:textStyle="normal"
-                android:id="@+id/applyNow"/>
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="2dp"-->
+<!--            android:background="#ebeff8"/>-->
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:padding="10dp">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="18sp"-->
+<!--                android:text="Starts from"-->
+<!--                android:textColor="#009933"-->
+<!--                android:textStyle="italic"-->
+<!--                android:id="@+id/startsFromDate"/>-->
 
 
-        </RelativeLayout>
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="18sp"-->
+<!--                android:text="Apply Now"-->
+<!--                android:textColor="#2369ed"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:textStyle="normal"-->
+<!--                android:id="@+id/applyNow"/>-->
 
 
+<!--        </RelativeLayout>-->
 
-
-
-
-
-
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

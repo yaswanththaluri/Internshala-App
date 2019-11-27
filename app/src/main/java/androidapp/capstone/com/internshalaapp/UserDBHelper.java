@@ -38,6 +38,13 @@ public class UserDBHelper extends SQLiteOpenHelper {
                 UserContract.UserEntry.WORKSHOP_Web_Development + " INTEGER DEFAULT 0 );";
         //Execute the query
         sqLiteDatabase.execSQL(CREATE_TABLE_SQL_QUERY);
+
+        final String CREATE_TABLE_SQL_QUERY2 = "CREATE TABLE " + UserContract.UserEntry.CURR_USER_TABLE +
+                "( " + UserContract.UserEntry.CURRENT_USER_ID + " TEXT NOT NULL, " +
+                UserContract.UserEntry.CURRENT_USER_EMAIL + " TEXT NOT NULL);";
+
+        sqLiteDatabase.execSQL(CREATE_TABLE_SQL_QUERY2);
+
     }
 
     @Override

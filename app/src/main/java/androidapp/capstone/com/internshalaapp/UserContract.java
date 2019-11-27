@@ -38,6 +38,9 @@ public class UserContract
         public static final String WORKSHOP_Machine_Learning = "MachineLearning";
         public static final String WORKSHOP_SAP_Bootcamp = "SAPBootcamp";
         public static final String WORKSHOP_Web_Development = "WebDevelopment";
+        public static final String CURRENT_USER_EMAIL = "curr_user";
+        public static final String CURRENT_USER_ID = "curr_id";
+        public static final String CURR_USER_TABLE = "CurrUser";
 
     }
 

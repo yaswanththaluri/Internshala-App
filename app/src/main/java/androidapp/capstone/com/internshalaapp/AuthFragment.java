@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ public class AuthFragment extends Fragment {
     private SQLiteDatabase mSqLiteDatabase;
     private View currView;
     private Context actContext;
+    private ImageView closeFrag;
 
     @Override
     public void onAttach(Context context) {
@@ -66,6 +68,8 @@ public class AuthFragment extends Fragment {
         emailIn = view.findViewById(R.id.signinUseremail);
         pswdIn = view.findViewById(R.id.signinPswd);
 
+        closeFrag = view.findViewById(R.id.closeAuthFragment);
+
 
         emailUp = view.findViewById(R.id.signupUseremail);
         pswdUp = view.findViewById(R.id.signupPswd);
@@ -96,7 +100,23 @@ public class AuthFragment extends Fragment {
             public void onClick(View view) {
                 String mail = emailIn.getText().toString();
                 String pswd = pswdIn.getText().toString();
-                validateUser(mail, pswd);
+                if (validateUser(mail, pswd))
+                {
+                    mSqLiteDatabase = mUserDbHelper.getWritableDatabase();
+                    mSqLiteDatabase.execSQL("UPDATE "+UserContract.UserEntry.CURR_USER_TABLE+" SET curr_user="+"'"+mail+"' WHERE curr_id = '01'");
+                    Intent i = new Intent(getContext(), MainActivity.class);
+                    i.putExtra("showNavs", "true");
+                    startActivity(i);
+                    ((Activity) getActivity()).overridePendingTransition(0, 0);
+                }
+            }
+        });
+
+        closeFrag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), MainActivity.class);
+                startActivity(i);
             }
         });
 
@@ -163,12 +183,8 @@ public class AuthFragment extends Fragment {
             {
                 mSqLiteDatabase.execSQL("INSERT INTO "+UserContract.UserEntry.TABLE_NAME
                         +" (email, password, firstName, lastName) values('"+email+"', '"+pswd+"', '"+fName+"', '"+sName+"');");
-
+                mSqLiteDatabase.execSQL("INSERT INTO "+UserContract.UserEntry.CURR_USER_TABLE+" (curr_user, curr_id) values('"+email+"', '01');");
                 Toast.makeText(currView.getContext(), "Account Created Successfully", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(getContext(), MainActivity.class);
-                i.putExtra("showNavs", "true");
-                startActivity(i);
-                ((Activity) getActivity()).overridePendingTransition(0, 0);
             }
             catch (Exception e)
             {
